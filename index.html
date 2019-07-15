@@ -13,6 +13,7 @@
             $('input[name="check"]:checked').each(function() {
               _tmp.push($(this).parents('li').attr('class').split(' '));
             });
+
             _tmp = Array.prototype.concat.apply([], _tmp);
 
             var data={};
@@ -22,15 +23,12 @@
               data[key]++;
             }
 
-            var showClass = data.filter(function(value){ return ( value >= 3);} );
+            var showClasses = Object.entries(data).filter(([_, value]) => value >= 3).map(e => e[0]);
 
-
-            if (showClass) {
-              $('.' + showClass).show();
-            } else {
-              $('button').hide();
-            }
-
+            $('.button').hide();
+            showClasses.forEach(clazz => {
+              $(`.button.${clazz}`).show();
+            });
           };
         });
       });
