@@ -6,8 +6,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
       $(function() {
+        $('.button').hide();
+
         $('input[name="check"]').change(function() {
-          $('button').hide();
+          $('.button').hide();
           if ($('input[name="check"]:checked').length >= 3) {
             var _tmp = [];
             $('input[name="check"]:checked').each(function() {
@@ -25,7 +27,6 @@
 
             var showClasses = Object.entries(data).filter(([_, value]) => value >= 3).map(e => e[0]);
 
-            $('.button').hide();
             showClasses.forEach(clazz => {
               $(`.button.${clazz}`).show();
             });
